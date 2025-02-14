@@ -1,0 +1,11 @@
+from fastapi import FastAPI
+app = FastAPI()
+@app.get("/")
+def read_root():
+    return {"message": "Hello, FastAPI!"}
+@app.get("/items/{items_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "query": q}
+if __name__ == "__main":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1" , port=8000)
